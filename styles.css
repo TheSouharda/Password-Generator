@@ -6,4 +6,75 @@
     padding: 0;
 }
 
-body
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Muli', sans-serif;
+    color: white;
+    background-color: #3B3B98;
+}
+
+.container {
+    width: 350px;
+
+    background-color: #23235B;
+    max-width: 100%;
+}
+
+.container h2 {
+    text-align: center;
+    margin: 1em 0 1.5em;
+
+}
+
+.result-container {
+    width: 90%;
+    height: 3em;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 1.5em auto;
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+
+}
+
+.result-container .btn {
+    height: 2.5em;
+    width: 3em;
+    margin-left: auto;
+    cursor: pointer;
+    /* margin-right: 0.1em; */
+}
+
+.option {
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn {
+    background-color: #3B3B98;
+    font-size: 1em;
+    border: none;
+    color: #fff;
+
+}
+
+.gen {
+    background-color: #3B3B98;
+    font-size: 1em;
+    border: none;
+    color: #fff;
+    margin: 1em auto;
+    width: 90%;
+    height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
