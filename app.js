@@ -14,7 +14,7 @@ generate.addEventListener("click", () => {
   const hasNumber = numbersEl.checked;
   const hasSymbol = symbolsEl.checked;
 
-  console.log(hasLower, hasUpper, hasNumber, hasSymbol);
+  genPassword(hasLower, hasUpper, hasNumber, hasSymbol);
 });
 
 const randomFunc = {
@@ -23,6 +23,23 @@ const randomFunc = {
   number: getRandomNumber,
   symbol: getRandomSymbol,
 };
+
+function genPassword(lower, upper, number, symbol) {
+  //! Init password var
+
+  let generatedPassword = "";
+
+  const typesCount = lower + upper + number + symbol;
+  console.log(typesCount);
+
+  const typesArray = [
+    { lower },
+    { upper },
+    { number },
+    { symbol },
+  ].filter((item) => Object.values(item));
+  console.log(typesArray);
+}
 
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
