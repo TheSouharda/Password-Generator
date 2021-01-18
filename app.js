@@ -1,5 +1,7 @@
+"use strict";
+
 const resultEl = document.getElementById("result");
-const lengthEl = document.getElementById("number");
+const lengthEl = document.getElementById("length");
 const lowercaseEl = document.getElementById("lowercase");
 const uppercaseEl = document.getElementById("uppercase");
 const numbersEl = document.getElementById("numbers");
@@ -8,13 +10,13 @@ const generate = document.getElementById("generate");
 const clipboardEl = document.getElementById("clippboard");
 
 generate.addEventListener("click", () => {
-  const length = +lengthEl.nodeValue;
+  const length = +numbersEl.value;
   const hasLower = lowercaseEl.checked;
   const hasUpper = uppercaseEl.checked;
   const hasNumber = numbersEl.checked;
   const hasSymbol = symbolsEl.checked;
 
-  genPassword(hasLower, hasUpper, hasNumber, hasSymbol);
+  genPassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
 });
 
 const randomFunc = {
@@ -24,21 +26,28 @@ const randomFunc = {
   symbol: getRandomSymbol,
 };
 
-function genPassword(lower, upper, number, symbol) {
+function genPassword(lower, upper, number, symbol, length) {
   //! Init password var
 
   let generatedPassword = "";
 
   const typesCount = lower + upper + number + symbol;
-  console.log(typesCount);
 
-  const typesArray = [
-    { lower },
-    { upper },
-    { number },
-    { symbol },
-  ].filter((item) => Object.values(item));
+  const typesArray = [{ lower }, { upper }, { number }, { symbol }].filter(
+    (item) => Object.values(item)[0]
+  );
   console.log(typesArray);
+
+  if (typesCount === 0) {
+    return "";
+  }
+
+  for (let i = 0; i < length; i += typesCount) {
+    typesArray.forEach((type) => {
+      const funcName = Object.keys(type);
+      //   console.log(funcName);
+    });
+  }
 }
 
 function getRandomLower() {
