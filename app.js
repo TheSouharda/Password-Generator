@@ -15,7 +15,6 @@ generate.addEventListener("click", () => {
   const hasUpper = uppercaseEl.checked;
   const hasNumber = numbersEl.checked;
   const hasSymbol = symbolsEl.checked;
-  console.log(length);
 
   resultEl.innerText = genPassword(
     hasLower,
@@ -25,6 +24,8 @@ generate.addEventListener("click", () => {
     length
   );
 });
+
+//!adding copy paste functionality
 
 clipboard.addEventListener("click", () => {
   const textarea = document.createElement("textarea");
@@ -41,7 +42,7 @@ clipboard.addEventListener("click", () => {
   textarea.remove();
   alert("Password copied to clipboard");
 });
-
+//!Packing the functions into an object
 const randomFunc = {
   lower: getRandomLower,
   upper: getRandomUpper,
@@ -49,35 +50,42 @@ const randomFunc = {
   symbol: getRandomSymbol,
 };
 
+//!The function that creates the password
 function genPassword(lower, upper, number, symbol, length) {
-  //! Init password var
+  //? Init password var
 
   let generatedPassword = "";
 
+  //? To keep a sum of all the checked options
+
   const typesCount = lower + upper + number + symbol;
+
+  //? Filtering out the unchecked options
 
   const typesArray = [{ lower }, { upper }, { number }, { symbol }].filter(
     (item) => Object.values(item)[0]
   );
-  // console.log(typesArray);
 
   if (typesCount === 0) {
     return "";
   }
 
+  //?Traversing through the checked options and parsing the function names
+
   for (let i = 0; i < length; i += typesCount) {
     typesArray.forEach((type) => {
       const funcName = Object.keys(type)[0];
 
-      // console.log("funcName:", funcName);
-
       generatedPassword += randomFunc[funcName]();
     });
   }
+
+  //? slicing the string according to the length given
   const finalPass = generatedPassword.slice(0, length);
   return finalPass;
 }
 
+//! The randomize function to generate the characters
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
@@ -92,8 +100,3 @@ function getRandomSymbol() {
   const symbols = '!@#$%^&*(){}:"<>?';
   return symbols[Math.floor(Math.random() * symbols.length) + 1];
 }
-
-console.log(getRandomLower());
-console.log(getRandomUpper());
-console.log(getRandomNumber());
-console.log(getRandomSymbol());
